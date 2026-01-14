@@ -1,0 +1,279 @@
+\documentclass[aspectratio=169,11pt]{beamer}
+
+% ============================================
+% THEME - Shapiro/Applied Micro Style
+% ============================================
+\usetheme{default}
+\usecolortheme{default}
+
+% Colors matching Shapiro slides
+\definecolor{headerblue}{RGB}{51,51,153}
+\definecolor{darkblue}{RGB}{51,51,153}
+
+% Frame title: blue rounded box with white text
+\setbeamertemplate{frametitle}{%
+  \vspace{0.3cm}
+  \begin{beamercolorbox}[wd=\paperwidth,ht=0.8cm,dp=0.3cm,leftskip=0.3cm]{frametitle}
+    \usebeamerfont{frametitle}\insertframetitle
+  \end{beamercolorbox}
+}
+\setbeamercolor{frametitle}{fg=white,bg=headerblue}
+\setbeamerfont{frametitle}{size=\large}
+
+% Title slide colors
+\setbeamercolor{title}{fg=white}
+\setbeamercolor{subtitle}{fg=white}
+\setbeamercolor{author}{fg=black}
+\setbeamercolor{institute}{fg=black}
+\setbeamercolor{date}{fg=black}
+
+% Title page: blue box for title
+\setbeamertemplate{title page}{
+  \vspace{1cm}
+  \begin{beamercolorbox}[wd=\paperwidth,ht=1.5cm,dp=0.5cm,center]{title}
+    \usebeamerfont{title}\inserttitle\\[0.2cm]
+    \usebeamerfont{subtitle}\insertsubtitle
+  \end{beamercolorbox}
+  \vspace{0.8cm}
+  \begin{center}
+    \usebeamercolor[fg]{author}\usebeamerfont{author}\insertauthor\\[0.3cm]
+    \usebeamercolor[fg]{institute}\usebeamerfont{institute}\insertinstitute\\[0.3cm]
+    \usebeamercolor[fg]{date}\usebeamerfont{date}\insertdate
+  \end{center}
+}
+\setbeamercolor{title}{bg=headerblue}
+
+% Structure color for itemize bullets
+\setbeamercolor{structure}{fg=darkblue}
+
+% Small filled circle bullets (like Shapiro)
+\setbeamertemplate{itemize item}{\small$\bullet$}
+\setbeamertemplate{itemize subitem}{\small$\bullet$}
+\setbeamertemplate{itemize subsubitem}{\small$\bullet$}
+\setbeamertemplate{enumerate items}[default]
+
+% Minimal footer: frame numbers right, small back-to-outline icon left
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}{%
+  \hbox to \paperwidth{%
+    \hspace{0.3cm}%
+    \hyperlink{toc}{\textcolor{gray!60}{\tiny$\blacktriangleleft$}}%
+    \hfill%
+    \textcolor{gray}{\scriptsize\insertframenumber/\inserttotalframenumber}%
+    \hspace{0.3cm}%
+  }%
+  \vspace{0.2cm}%
+}
+
+% No headline
+\setbeamertemplate{headline}{}
+
+% Roadmap slide command: shows TOC with current section highlighted
+\newcommand{\roadmapslide}{%
+  \begin{frame}[plain]
+    \vfill
+    \begin{center}
+      \tableofcontents[currentsection,hideallsubsections]
+    \end{center}
+    \vfill
+  \end{frame}
+}
+
+% ============================================
+% PACKAGES
+% ============================================
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,positioning}
+
+% ============================================
+% TITLE INFORMATION
+% ============================================
+\title[Vertical Disintegration \& Farm Productivity]{Vertical Disintegration and the Shifting Boundary of the Farm Business}
+\subtitle{Implications for Agricultural Productivity}
+
+\author[Brent Hueth]{Brent Hueth}
+
+\institute[]{
+  USDA Economic Research Service\\
+  \smallskip
+  \textit{Joint work with Anton Babkin (UW-Madison) and Richard A. Dunn (Sandhill Consulting)}
+}
+
+\date[Job Seminar]{\today}
+
+% ============================================
+% DOCUMENT
+% ============================================
+\begin{document}
+
+% --------------------------------------------
+% TITLE SLIDE
+% --------------------------------------------
+\begin{frame}[plain]
+\titlepage
+\end{frame}
+
+% ============================================
+% OUTLINE
+% ============================================
+
+\begin{frame}{Outline}
+\label{toc}
+\tableofcontents
+\end{frame}
+
+% ============================================
+% SECTION 1: RESEARCH OVERVIEW
+% ============================================
+
+\section{Research Overview: Past, Present, and Future}
+\roadmapslide
+
+% --------------------------------------------
+\subsection{Past and Present}
+
+\begin{frame}{Research Background}
+
+\textbf{Agricultural contracting and vertical coordination}
+\begin{itemize}
+    \item Contract design, risk allocation, quality measurement in agricultural markets
+    \item \textit{AJAE} (1999, 2001, 2004, 2007); \textit{European Review of Ag. Econ.} (2002)
+\end{itemize}
+
+\bigskip
+
+\textbf{Cooperative organization and governance}
+\begin{itemize}
+    \item Economics of member-owned firms: incentives, monitoring, capital structure
+    \item \textit{AJAE} (2009); \textit{J. Econ. \& Mgmt. Strategy} (2015); \textit{AEPP} (2023)
+\end{itemize}
+
+\bigskip
+
+\textbf{Cooperative business, supply chains, productivity measurement}
+\begin{itemize}
+   \item Cooperative business census
+   \item Founded UW-Madison FSRDC
+   \item CNSTAT Complex Farms report
+   \item \textit{AJAE} (2017); \textit{AEPP} (2022)
+\end{itemize}
+
+\bigskip
+
+\textit{Today's paper connects all three themes: examining how organizational change affects agricultural productivity using novel administrative data.}
+
+\end{frame}
+
+% --------------------------------------------
+\subsection{Future}
+
+\begin{frame}{Future Research}
+
+\textbf{Vertical disintegration research program}
+\begin{itemize}
+    \item Causal identification using establishment entry/exit dynamics
+    \item Extending analysis to animal agriculture; international comparisons
+\end{itemize}
+
+\bigskip
+
+\textbf{Productivity measurement}
+\begin{itemize}
+    \item Quality adjustment for service inputs in TFP accounting
+    \item Market power implications; linking manufacturing and ag productivity
+\end{itemize}
+
+\bigskip
+
+\textbf{Organizational economics of agriculture}
+\begin{itemize}
+    \item Farm consolidation effects on upstream service markets
+    \item Cooperatives in technology diffusion; data governance and innovation
+\end{itemize}
+
+\end{frame}
+
+% ============================================
+% SECTION 2: PAPER PRESENTATION
+% ============================================
+
+\section{Farm Vertical Disintegration and Productivity}
+\roadmapslide
+
+% --------------------------------------------
+\subsection{Motivation}
+
+\begin{frame}{Paper Overview}
+
+\textbf{Research question:} Does vertical disintegration---the emergence of industries supplying production services to farms---contribute to agricultural productivity?
+
+\bigskip
+
+\textbf{Why this matters:}
+\begin{itemize}
+    \item Agricultural TFP growth is exceptional (1.49\% annually, 1948--2021)
+    \item Typically attributed to R\&D and technology adoption
+    \item Organizational change as a source of productivity growth is understudied
+\end{itemize}
+
+\bigskip
+
+\textbf{What we do:}
+\begin{itemize}
+    \item First systematic estimates of services--yield relationship
+    \item Leverage restricted Census Bureau administrative data
+    \item Document heterogeneity by crop type and farm scale
+    \item Examine longitudinal dynamics
+\end{itemize}
+
+\end{frame}
+
+% --------------------------------------------
+\subsection{Background}
+
+\begin{frame}{Background}
+\centering
+\textit{[To be developed]}
+\end{frame}
+
+% --------------------------------------------
+\subsection{Data and Methodology}
+
+\begin{frame}{Data and Methodology}
+\centering
+\textit{[To be developed]}
+\end{frame}
+
+% --------------------------------------------
+\subsection{Results}
+
+\begin{frame}{Results}
+\centering
+\textit{[To be developed]}
+\end{frame}
+
+% --------------------------------------------
+\subsection{Discussion}
+
+\begin{frame}{Discussion}
+\centering
+\textit{[To be developed]}
+\end{frame}
+
+% --------------------------------------------
+\subsection{Conclusion}
+
+\begin{frame}{Conclusion}
+\centering
+\textit{[To be developed]}
+\end{frame}
+
+% ============================================
+% END
+% ============================================
+
+\end{document}

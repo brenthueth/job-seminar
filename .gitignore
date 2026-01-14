@@ -1,0 +1,27 @@
+# LaTeX auxiliary files
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.nav
+*.out
+*.snm
+*.synctex.gz
+*.toc
+*.vrb
+
+# PDF output (uncomment if you want to track PDFs)
+# *.pdf
+
+# Backup files
+*.bak
+*~
+
+# Mac OS
+.DS_Store
+
+# Editor files
+*.swp
+*.swo

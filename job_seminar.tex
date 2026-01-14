@@ -67,12 +67,12 @@
 \setbeamertemplate{itemize subsubitem}{\small$\bullet$}
 \setbeamertemplate{enumerate items}[default]
 
-% Minimal footer: frame numbers right, small back-to-outline icon left
+% Minimal footer: subsection (linked to outline) left, frame numbers right
 \setbeamertemplate{navigation symbols}{}
 \setbeamertemplate{footline}{%
   \hbox to \paperwidth{%
     \hspace{0.3cm}%
-    \hyperlink{toc}{\textcolor{gray!60}{\tiny$\blacktriangleleft$}}%
+    \hyperlink{toc}{\textcolor{gray!70}{\scriptsize$\triangleleft$~\insertsubsection}}%
     \hfill%
     \textcolor{gray}{\scriptsize\insertframenumber/\inserttotalframenumber}%
     \hspace{0.3cm}%
@@ -101,9 +101,18 @@
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{hyperref}
+\hypersetup{
+  colorlinks=false,
+  linkcolor=darkblue,
+  urlcolor=darkblue
+}
 \usepackage{tikz}
 \usetikzlibrary{shapes,arrows,positioning}
 \usepackage{pgfpages}  % Required for notes functionality
+
+% TOC styling - use beamer's built-in linking
+\setbeamercolor{section in toc}{fg=darkblue}
+\setbeamercolor{subsection in toc}{fg=gray!80}
 
 % ============================================
 % TITLE INFORMATION
@@ -139,6 +148,7 @@
 
 \begin{frame}{Outline}
 \label{toc}
+\hypertarget{toc}{}
 \tableofcontents
 \end{frame}
 
@@ -151,6 +161,7 @@
 
 % --------------------------------------------
 \subsection{Past and Present}
+\label{subsec:past}
 
 \begin{frame}{Research Background}
 
@@ -195,6 +206,7 @@
 
 % --------------------------------------------
 \subsection{Future}
+\label{subsec:future}
 
 \begin{frame}{Future Research: Economics of Cooperatives}
 
@@ -291,6 +303,7 @@ Any views expressed are those of the authors and not those of the U.S. Census Bu
 
 % --------------------------------------------
 \subsection{Motivation}
+\label{subsec:motivation}
 
 %SLIDE 1: The Hook - TFP puzzle
 \begin{frame}{A Puzzle in American Agriculture}
@@ -457,6 +470,7 @@ contribute to agricultural productivity growth?
 
 % --------------------------------------------
 \subsection{Background}
+\label{subsec:background}
 
 \begin{frame}{Not a New Question}
 
@@ -569,34 +583,593 @@ C. More meaningful analysis of the interrelationships of agriculture and agricul
 
 % --------------------------------------------
 \subsection{Data and Methodology}
+\label{subsec:data}
 
-\begin{frame}{Data and Methodology}
-\centering
-\textit{[To be developed]}
+\begin{frame}{Data Sources}
+
+\textbf{Farm productivity (Census of Agriculture, 2002--2022):}
+\begin{itemize}
+    \item County-level crop sales, harvested acreage, yields
+    \item Corn, soybeans, wheat (bushels/acre); all crops (dollars/acre)
+    \item Farm structure: number of farms, land distribution, HHI
+\end{itemize}
+
+\bigskip
+
+\textbf{Service provider activity (Longitudinal Business Database, 2002-2017):}
+\begin{itemize}
+    \item Restricted-access establishment-level microdata
+    \item NAICS 1151: Support Activities for Crop Production
+    \item \highlight{County-level payroll} as proxy for service intensity
+    \item Derived from IRS Forms 941/943 (payroll tax filings)
+\end{itemize}
+
+\bigskip
+
+\textbf{Why LBD?} Public data (CBP, QCEW) suppressed for \highlight{75\%} of counties with crop services---yet these counties produce \highlight{half of U.S. crops}
+
+\note{
+  \begin{itemize}
+    \item Census of Ag: public county tables from NASS
+    \item LBD: restricted access through FSRDC network
+    \item Payroll better than employment (March 12 employment misses seasonality)
+    \item Key contribution: overcoming data suppression problem
+  \end{itemize}
+}
+
+\end{frame}
+
+\begin{frame}{The Data Suppression Problem}
+
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+\textbf{QCEW Data Availability (2017):}
+
+\smallskip
+
+\begin{tabular}{lr}
+\toprule
+Category & Counties \\
+\midrule
+No services & 1,185 \\
+Unsuppressed & 481 \\
+\redemph{Suppressed} & \redemph{1,408} \\
+\midrule
+Total & 3,074 \\
+\bottomrule
+\end{tabular}
+
+\bigskip
+
+74.5\% of counties with crop services have suppressed data
+\end{column}
+
+\begin{column}{0.48\textwidth}
+\textbf{But suppressed counties matter:}
+
+\smallskip
+
+\begin{tabular}{lrr}
+\toprule
+ & Unsupp. & Supp. \\
+\midrule
+Estab. & 64\% & 36\% \\
+Payroll & 83\% & 17\% \\
+\highlight{Crop sales} & \highlight{50\%} & \highlight{50\%} \\
+\bottomrule
+\end{tabular}
+
+\bigskip
+
+Half of U.S. crop production occurs in counties with suppressed service data
+\end{column}
+\end{columns}
+
+\bigskip
+
+\textbf{Solution:} Use restricted LBD microdata to construct unsuppressed county-level payroll measures
+
+\note{
+  \begin{itemize}
+    \item Table 1 from the paper
+    \item Suppression for disclosure avoidance (few establishments)
+    \item Can't study services-productivity relationship with public data
+    \item LBD access through FSRDC is key contribution
+  \end{itemize}
+}
+
+\end{frame}
+
+\begin{frame}{Empirical Strategy: Cross-Sectional}
+
+\textbf{Basic specification (repeated cross-sections, 2002--2017):}
+
+\begin{equation*}
+\ln(\text{Yield}_{ct}) = \beta_0 + \beta_1 \ln(\text{Payroll}_{ct}) + \beta_2 \ln(\text{Land}_{ct}) + \beta_3 \ln(\text{AvgLand}_{ct}) + \beta_4 \text{HHI}_{ct} + \varepsilon_{ct}
+\end{equation*}
+
+\bigskip
+
+\begin{itemize}
+    \item $c$ = county, $t$ = Census year (2002, 2007, 2012, 2017)
+    \item \textbf{Outcome:} Yield (bu/acre for corn, soy, wheat; \$/acre for all crops)
+    \item \textbf{Key regressor:} Log payroll in NAICS 1151
+    \item \textbf{Controls:} Total harvested acres, mean farm size, land concentration (HHI)
+\end{itemize}
+
+\bigskip
+
+\textbf{Interpretation:} $\beta_1$ = elasticity of yield with respect to service payroll
+
+\bigskip
+
+\textit{Estimate separately by year and crop to allow relationship to vary}
+
+\note{
+  \begin{itemize}
+    \item Log-log specification for elasticity interpretation
+    \item Controls address scale and structure confounds
+    \item Repeated cross-section (not panel FE) to see how relationship evolves
+    \item Hypothesis: $\beta_1 > 0$ if services boost productivity
+  \end{itemize}
+}
+
+\end{frame}
+
+\begin{frame}{Empirical Strategy: Longitudinal}
+
+\textbf{Addressing simultaneity:} Does service activity cause productivity, or do productive counties attract services?
+
+\bigskip
+
+\textbf{Dynamic specification:}
+
+\begin{equation*}
+\Delta \ln(\text{Yield}_{c,t+5}) = \beta_0 + \beta_1 \ln(\text{Yield}_{ct}) + \beta_2 \ln(\text{Payroll}_{ct}) + \mathbf{X}_{ct}'\boldsymbol{\gamma} + \varepsilon_{ct}
+\end{equation*}
+
+\bigskip
+
+\begin{itemize}
+    \item \textbf{Outcome:} 5-year yield \textit{growth} (log difference)
+    \item \textbf{Key regressor:} \textit{Base-year} service payroll
+    \item \textbf{Control for base-year yield:} Addresses reverse causality, mean reversion
+\end{itemize}
+
+\bigskip
+
+\textbf{Interpretation:} $\beta_2 > 0$ means counties with larger service sectors experience \textit{faster subsequent yield growth}, conditional on initial productivity
+
+\note{
+  \begin{itemize}
+    \item Key innovation: use lagged payroll to predict future growth
+    \item Controls for initial productivity level
+    \item Not full causal identification, but addresses main endogeneity concern
+    \item Equation 3 from the paper
+  \end{itemize}
+}
+
 \end{frame}
 
 % --------------------------------------------
 \subsection{Results}
+\label{subsec:results}
 
-\begin{frame}{Results}
-\centering
-\textit{[To be developed]}
+\begin{frame}{Cross-Sectional Results: Services and Yields}
+
+\textbf{Key finding:} Persistent positive relationship between service payroll and yields
+
+\bigskip
+
+\begin{center}
+\begin{tabular}{lcccc}
+\toprule
+Year & All Crops & Corn & Soybeans & Wheat \\
+\midrule
+2002 & 0.228*** & 0.035*** & 0.008* & 0.043*** \\
+2007 & 0.196*** & 0.027*** & 0.009 & 0.048*** \\
+2012 & 0.194*** & 0.063*** & 0.028*** & 0.033*** \\
+2017 & 0.193*** & 0.020*** & 0.007 & 0.024*** \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+{\small\textit{Elasticity of yield w.r.t. crop services payroll. Controls: land, avg. farm size, HHI.}}
+
+\bigskip
+
+\textbf{Interpretation:} 1\% increase in service payroll $\rightarrow$ \highlight{0.02--0.06\%} higher corn yields
+
+\note{
+  \begin{itemize}
+    \item Table 3 from the paper
+    \item All crops uses \$/acre; individual crops use bu/acre
+    \item Soybeans weakest association---less labor intensive?
+    \item Coefficients smaller for individual crops (payroll affects all crops)
+  \end{itemize}
+}
+
+\end{frame}
+
+\begin{frame}{The Role of Farm Scale}
+
+\textbf{Does the services-yield relationship vary with farm structure?}
+
+\bigskip
+
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+\textbf{By total harvested land:}
+\begin{itemize}
+    \item \textbf{Wheat:} Effect \highlight{stronger} in larger counties
+    \item \textbf{Corn:} Effect \highlight{weaker} as acreage increases
+    \item \textbf{Soybeans:} No significant pattern
+\end{itemize}
+
+\medskip
+
+\textit{Suggests different mechanisms by crop}
+\end{column}
+
+\begin{column}{0.48\textwidth}
+\textbf{By average farm size:}
+\begin{itemize}
+    \item Effect often \highlight{positive}
+    \item Service providers have more impact in counties with larger farms
+\end{itemize}
+
+\medskip
+
+\textit{Consistent with disintegration story: large farms outsource more}
+\end{column}
+\end{columns}
+
+\bigskip
+
+\textbf{Implication:} One-size-fits-all analysis obscures important heterogeneity
+
+\note{
+  \begin{itemize}
+    \item Figure 3 from the paper shows marginal effects
+    \item Wheat: scale economies in services matter more
+    \item Corn: diminishing returns at larger scale
+    \item Large farms drive the relationship---they're the ones outsourcing
+  \end{itemize}
+}
+
+\end{frame}
+
+\begin{frame}{Longitudinal Results: Services and Yield \textit{Growth}}
+
+\textbf{Question:} Do larger service sectors predict \textit{faster} yield growth?
+
+\bigskip
+
+\begin{center}
+\begin{tabular}{lcccc}
+\toprule
+Period & All Crops & Corn & Soybeans & Wheat \\
+\midrule
+2002--2007 & 0.006 & 0.009* & 0.006 & 0.020*** \\
+2007--2012 & \highlight{0.030***} & \highlight{0.049***} & \highlight{0.028***} & 0.007* \\
+2012--2017 & \highlight{0.035***} & $-$0.004 & $-$0.003 & 0.000 \\
+2017--2022 & $-$0.001 & 0.017*** & 0.005 & 0.001 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+{\small\textit{Coefficient on base-year payroll, controlling for base-year yield and farm structure.}}
+
+\bigskip
+
+\textbf{Key pattern:} Positive effects in early periods, \redemph{weakening over time}
+
+\note{
+  \begin{itemize}
+    \item Table 4 from the paper
+    \item Addresses simultaneity: does service activity \textit{cause} productivity?
+    \item Controlling for base-year yield addresses reverse causality
+    \item Weakening suggests diminishing returns as sector matures
+  \end{itemize}
+}
+
+\end{frame}
+
+\begin{frame}{Economic Magnitude: How Much Does It Matter?}
+
+\textbf{Thought experiment:} Compare counties at 50th vs. 75th percentile of services
+
+\bigskip
+
+\begin{center}
+\begin{tabular}{lcccc}
+\toprule
+Period & All Crops & Corn & Soybeans & Wheat \\
+\midrule
+2002--2007 & --- & +1.2 pp & --- & +2.7 pp \\
+2007--2012 & \highlight{+4.0 pp} & \highlight{+6.6 pp} & +3.5 pp & +1.0 pp \\
+2012--2017 & +4.6 pp & --- & --- & --- \\
+2017--2022 & --- & +2.0 pp & --- & --- \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+{\small\textit{Difference in 5-year productivity growth rate (percentage points)}}
+
+\bigskip
+
+\textbf{Example:} A county at 75th percentile of crop services in 2007 experienced \highlight{6.6 percentage points} higher corn yield growth over 2007--2012 than a county at 50th percentile
+
+\bigskip
+
+\textit{Modest but economically meaningful differences}
+
+\note{
+  \begin{itemize}
+    \item Table 5 from the paper
+    \item Makes elasticities concrete
+    \item 6.6 pp difference over 5 years is substantial
+    \item Blank cells = coefficient not statistically significant
+  \end{itemize}
+}
+
+\end{frame}
+
+\begin{frame}{Results Summary}
+
+\begin{enumerate}
+    \item \textbf{Persistent positive relationship}\\
+    Counties with larger crop services sectors have higher yields (2002--2017)
+
+    \bigskip
+
+    \item \textbf{Heterogeneity matters}\\
+    Effects vary by crop type and farm scale; large farms drive the relationship
+
+    \bigskip
+
+    \item \textbf{Dynamic evidence supports causality}\\
+    Larger services sectors predict \textit{faster subsequent} yield growth
+
+    \bigskip
+
+    \item \textbf{But relationship is weakening}\\
+    Consistent with maturing industry, exhausted scale economies
+\end{enumerate}
+
+\bigskip
+
+\textbf{Bottom line:} Organizational restructuring---vertical disintegration---appears to be an \highlight{overlooked source} of agricultural productivity growth
+
+\note{
+  \begin{itemize}
+    \item Wrap up results before moving to discussion
+    \item Key message: disintegration contributes to productivity
+    \item But effects may be diminishing as sector matures
+    \item Sets up discussion of implications
+  \end{itemize}
+}
+
 \end{frame}
 
 % --------------------------------------------
 \subsection{Discussion}
+\label{subsec:discussion}
 
-\begin{frame}{Discussion}
-\centering
-\textit{[To be developed]}
+\begin{frame}{Why Is the Relationship Weakening?}
+
+\textbf{Observed pattern:} Services-yield relationship strongest in 2007--2012, fading since
+
+\bigskip
+
+\textbf{Possible explanations:}
+
+\begin{enumerate}
+    \item \textbf{Maturing industry}
+    \begin{itemize}
+        \item Entry and exit rates declining since 1990s
+        \item ``Creative destruction'' drives innovation; less dynamism $\rightarrow$ slower gains
+    \end{itemize}
+
+    \bigskip
+
+    \item \textbf{Exhausted scale economies}
+    \begin{itemize}
+        \item Early adopters captured largest gains
+        \item Remaining farms may face higher transaction costs
+    \end{itemize}
+
+    \bigskip
+
+    \item \textbf{Farm consolidation}
+    \begin{itemize}
+        \item Largest farms increasingly self-sufficient
+        \item Service providers working with fewer, larger clients
+    \end{itemize}
+\end{enumerate}
+
+\note{
+  \begin{itemize}
+    \item Important to address why effects are weakening
+    \item Industry dynamism declining---business dynamics literature
+    \item Consistent with Stigler: scale economies eventually exhausted
+    \item Farm consolidation may be shifting the equilibrium
+  \end{itemize}
+}
+
+\end{frame}
+
+\begin{frame}{Implications for Productivity Measurement}
+
+\textbf{How does this affect TFP accounting?}
+
+\bigskip
+
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+\textbf{Quality mismeasurement:}
+\begin{itemize}
+    \item Services = substitute for own-capital
+    \item Same price index applied to both
+    \item But: machinery managed by specialists is \highlight{more productive}
+    \item $\Rightarrow$ Service input quality \textit{understated}
+    \item $\Rightarrow$ TFP growth \textit{overstated}
+\end{itemize}
+\end{column}
+
+\begin{column}{0.48\textwidth}
+\textbf{Market power concerns:}
+\begin{itemize}
+    \item High local concentration in services
+    \item Contract workers paid less than hired workers
+    \item If monopsony: wages $<$ marginal product
+    \item $\Rightarrow$ Labor share understated
+    \item $\Rightarrow$ Another source of TFP bias
+\end{itemize}
+\end{column}
+\end{columns}
+
+\bigskip
+
+\textbf{Takeaway:} Vertical disintegration creates measurement challenges not fully addressed in current TFP frameworks
+
+\note{
+  \begin{itemize}
+    \item Links to productivity measurement literature
+    \item Quality adjustment is key issue
+    \item Wang \& Loduca (2025): contract workers paid less
+    \item Suggests some ``TFP growth'' may be mismeasured input growth
+  \end{itemize}
+}
+
+\end{frame}
+
+\begin{frame}{Limitations and Future Directions}
+
+\textbf{Limitations:}
+\begin{itemize}
+    \item County-level analysis---can't observe farm-level outsourcing decisions
+    \item Payroll is proxy for service intensity, not direct output measure
+    \item Cannot fully separate services effect from technology adoption
+    \item Equilibrium relationships, not structural causal estimates
+\end{itemize}
+
+\bigskip
+
+\textbf{Future research directions:}
+\begin{itemize}
+    \item \textbf{2022 Census of Ag Services:} First since 1978---new microdata opportunities
+    \item \textbf{Farm-level analysis:} Link service use to individual farm outcomes
+    \item \textbf{Broader supply chain:} Extend to fertilizer, chemicals, equipment sectors
+    \item \textbf{Quality adjustment:} Develop crop-specific service price indices
+\end{itemize}
+
+\note{
+  \begin{itemize}
+    \item Honest about limitations
+    \item 2022 Census is a big deal---revived after 44 years
+    \item Sets up future research agenda
+    \item Connects to position at ISU---supply chain focus
+  \end{itemize}
+}
+
 \end{frame}
 
 % --------------------------------------------
 \subsection{Conclusion}
+\label{subsec:conclusion}
 
 \begin{frame}{Conclusion}
-\centering
-\textit{[To be developed]}
+
+\textbf{What we asked:}\\
+Does the emergence of specialized upstream service industries contribute to agricultural productivity growth?
+
+\bigskip
+
+\textbf{What we found:}
+\begin{itemize}
+    \item \highlight{Yes}---counties with larger crop services sectors have higher yields
+    \item Effect is heterogeneous: varies by crop, scale, and time
+    \item Longitudinal evidence consistent with causal interpretation
+    \item But gains appear to be diminishing as the sector matures
+\end{itemize}
+
+\bigskip
+
+\textbf{Why it matters:}
+\begin{itemize}
+    \item Organizational change is an \highlight{overlooked source} of productivity growth
+    \item Standard TFP frameworks may not fully capture these dynamics
+    \item Understanding the farm-services boundary is essential for policy
+\end{itemize}
+
+\note{
+  \begin{itemize}
+    \item Circle back to opening question
+    \item Clear answer: yes, with nuance
+    \item Broader implication for how we think about productivity
+  \end{itemize}
+}
+
+\end{frame}
+
+\begin{frame}{Key Takeaway}
+
+\begin{center}
+\Large
+\textit{The ``boundary of the farm'' is not fixed.}
+
+\bigskip
+
+\textit{As specialized service industries emerge,\\
+work moves off the farm---and productivity rises.}
+
+\bigskip
+
+\textit{This organizational restructuring deserves\\
+greater attention in productivity research.}
+\end{center}
+
+\note{
+  \begin{itemize}
+    \item Big 5 \#5: What is the key takeaway?
+    \item Memorable framing for the audience
+    \item Connects to title of the paper
+  \end{itemize}
+}
+
+\end{frame}
+
+\begin{frame}[plain]
+
+\vfill
+
+\begin{center}
+{\Large\textbf{Thank You}}
+
+\bigskip
+\bigskip
+
+Brent Hueth\\
+\textit{USDA Economic Research Service}\\
+\smallskip
+brent.hueth@usda.gov
+
+\bigskip
+\bigskip
+
+Joint work with:\\
+Anton Babkin (UW-Madison)\\
+Richard A. Dunn (Sandhill Consulting)
+
+\bigskip
+\bigskip
+
+{\small Slides available upon request}
+\end{center}
+
+\vfill
+
 \end{frame}
 
 % ============================================

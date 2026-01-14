@@ -1,12 +1,27 @@
 \documentclass[aspectratio=169,11pt]{beamer}
 
 % ============================================
-% THEME - Shapiro/Applied Micro Style
+% SPEAKER NOTES
 % ============================================
+% Compile options (uncomment ONE):
+%   - For projection slides: leave both commented (default hides notes)
+%   - For podium notes PDF: uncomment 'show only notes'
+%
+% \setbeameroption{hide notes}       % Default: slides only
+%\setbeameroption{show only notes}  % Notes PDF for podium
+
+
 \usetheme{default}
 \usecolortheme{default}
 
-% Colors matching Shapiro slides
+% Define custom colors for highlighting
+\definecolor{highlight}{RGB}{0,102,204}      % Professional blue for highlighting
+\definecolor{emphasis}{RGB}{204,0,0}         % Red for strong emphasis
+
+% Create easy-to-use commands
+\newcommand{\highlight}[1]{\textcolor{highlight}{#1}}
+\newcommand{\redemph}[1]{\textcolor{emphasis}{\textbf{#1}}}
+
 \definecolor{headerblue}{RGB}{51,51,153}
 \definecolor{darkblue}{RGB}{51,51,153}
 
@@ -88,6 +103,7 @@
 \usepackage{hyperref}
 \usepackage{tikz}
 \usetikzlibrary{shapes,arrows,positioning}
+\usepackage{pgfpages}  % Required for notes functionality
 
 % ============================================
 % TITLE INFORMATION
@@ -138,62 +154,116 @@
 
 \begin{frame}{Research Background}
 
-\textbf{Agricultural contracting and vertical coordination}
+\textbf{Agricultural contracting and vertical coordination (1999-2007)}
 \begin{itemize}
     \item Contract design, risk allocation, quality measurement in agricultural markets
-    \item \textit{AJAE} (1999, 2001, 2004, 2007); \textit{European Review of Ag. Econ.} (2002)
+    \item \textit{AJAE} (1999); \textit{RAE} (1999); \textit{ERAE} (2002)
 \end{itemize}
 
 \bigskip
 
-\textbf{Cooperative organization and governance}
+\textbf{Cooperative organization and governance (2008-2020)}
 \begin{itemize}
-    \item Economics of member-owned firms: incentives, monitoring, capital structure
-    \item \textit{AJAE} (2009); \textit{J. Econ. \& Mgmt. Strategy} (2015); \textit{AEPP} (2023)
+    \item Economics of member-owned firms: incentives, monitoring, entry
+    \item \textit{AJAE} (2009); \textit{Econ. Letters} (2014); \textit{J. Econ. \& Mgmt. Strategy} (2015)
 \end{itemize}
 
 \bigskip
 
-\textbf{Cooperative business, supply chains, productivity measurement}
+\textbf{Cooperative business, supply chains, productivity measurement (2010-present)}
 \begin{itemize}
    \item Cooperative business census
    \item Founded UW-Madison FSRDC
    \item CNSTAT Complex Farms report
-   \item \textit{AJAE} (2017); \textit{AEPP} (2022)
+   \item \textit{AJAE} (2017); \textit{AEPP} (2022); \textit{AEPP} (2023)
 \end{itemize}
 
 \bigskip
 
 \textit{Today's paper connects all three themes: examining how organizational change affects agricultural productivity using novel administrative data.}
 
+\note{
+  \begin{itemize}
+    \item 5 minutes on the past, 10 minutes on the future --- Sampling of past work
+    \item Producer price risk and quality measurement, stylized fact, foundation for risk management --- Incentive instruments, description from survey data --- Efficient contract, structural estimation
+    \item CEOs and incentive pay --- Missing markets and entry, parts 1 and 2
+    \item Brief story and background on this path; exposed to and motivated by major data gaps relevant to the field and center
+  \end{itemize}
+}
+
 \end{frame}
 
 % --------------------------------------------
 \subsection{Future}
 
-\begin{frame}{Future Research}
+\begin{frame}{Future Research: Economics of Cooperatives}
 
-\textbf{Vertical disintegration research program}
+\textbf{1. Census and sector understanding}
 \begin{itemize}
-    \item Causal identification using establishment entry/exit dynamics
-    \item Extending analysis to animal agriculture; international comparisons
+    \item Comprehensive description of cooperative business landscape
+    \item Historical context and trends as foundation for education and outreach
+\end{itemize}
+
+\textbf{2. Governance and financial management}
+\begin{itemize}
+    \item Managing member heterogeneity; board behavior; capital structure challenges
+    \item Core subject matter for leadership training
+\end{itemize}
+
+\textbf{3. Market-level interactions}
+\begin{itemize}
+    \item Role of cooperatives and entry/equilibrium issues in IO context
+\end{itemize}
+
+\textbf{4. Cooperatives and agricultural productivity}
+\begin{itemize}
+    \item Role in technology diffusion, input provision, and sector growth
+\end{itemize}
+
+\textbf{5. Startup and development}
+\begin{itemize}
+    \item Formation and growth of new cooperative organizations
+    \item Economic rationale, public policy implications
+\end{itemize}
+
+\note{
+  \begin{itemize}
+    \item This the main focus of my research program for THIS position
+    \item Historical context with research on DHIA and Farm Credit, development of dairy industry
+    \item The next slide summarizes complementary work drawing on my experience at ERS and connected with supply chain issues
+  \end{itemize}
+
+}
+\end{frame}
+
+
+
+% --------------------------------------------
+\begin{frame}{Future Research: Complementary Themes}
+
+\textbf{1. Agricultural supply chains and upstream industries}
+\begin{itemize}
+    \item Farm consolidation effects on input supply and service markets
+    \item Role of cooperatives in this context; farm driven distintegration
 \end{itemize}
 
 \bigskip
 
-\textbf{Productivity measurement}
+\textbf{2. Productivity measurement}
 \begin{itemize}
     \item Quality adjustment for service inputs in TFP accounting
-    \item Market power implications; linking manufacturing and ag productivity
+    \item Market power and implications for ag productivity
 \end{itemize}
 
-\bigskip
-
-\textbf{Organizational economics of agriculture}
-\begin{itemize}
-    \item Farm consolidation effects on upstream service markets
-    \item Cooperatives in technology diffusion; data governance and innovation
-\end{itemize}
+\note{
+  \begin{itemize}
+    \item Complementary in sense of connecting with broader themes and context
+    \item This section focuses on research with supply chain connection
+    \item Disintegration term happens alongside consolidation; emphasis on consequences upstream
+    \item Based on work initiated while at ERS
+    \item Great jumping off point, pivot to paper presentation
+  \end{itemize}
+}
 
 \end{frame}
 
@@ -205,39 +275,296 @@
 \roadmapslide
 
 % --------------------------------------------
+\begin{frame}{Disclaimers}
+
+\small
+
+\textbf{USDA Disclaimer:}\\
+This research is supported by the U.S. Department of Agriculture, Economic Research Service. The findings and conclusions in this publication are those of the author(s) and should not be construed to represent any official USDA or U.S. Government determination or policy.
+
+\bigskip
+
+\textbf{Census Bureau Disclaimer:}\\
+Any views expressed are those of the authors and not those of the U.S. Census Bureau. The Census Bureau has reviewed this data product to ensure appropriate access, use, and disclosure avoidance protection of the confidential source data used to produce this product.
+
+\end{frame}
+
+% --------------------------------------------
 \subsection{Motivation}
 
-\begin{frame}{Paper Overview}
+%SLIDE 1: The Hook - TFP puzzle
+\begin{frame}{A Puzzle in American Agriculture}
 
-\textbf{Research question:} Does vertical disintegration---the emergence of industries supplying production services to farms---contribute to agricultural productivity?
+\begin{columns}[c]
+\begin{column}{0.55\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figures/productivity2021.pdf}
+\end{column}
 
+\begin{column}{0.42\textwidth}
+\textbf{The productivity puzzle:}
+
+\bigskip
+
+\begin{itemize}
+    \item Output has \highlight{nearly tripled} since 1948
+
+    \bigskip
+
+    \item Aggregate inputs are \highlight{essentially flat}
+
+    \bigskip
+
+    \item TFP growth: \highlight{1.49\% annually}
+\end{itemize}
+
+\bigskip
+\bigskip
+
+\textit{Where does this productivity come from?}
+\end{column}
+\end{columns}
+
+\note{
+  \begin{itemize}
+    \item Hook: Start with a puzzle, not a literature review
+    \item ERS productivity accounts---output nearly 3x, inputs flat
+    \item Standard story: R\&D, technology, input quality
+    \item But what about organizational change?
+  \end{itemize}
+}
+
+\end{frame}
+
+%SLIDE 2: The disintegration trend
+\begin{frame}{A Clue: The Changing Structure of Farm Work}
+
+\begin{columns}[c]
+\begin{column}{0.55\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figures/pct_change_2002.pdf}
+
+\smallskip
+{\scriptsize\textcolor{gray}{Source: Economic Census \& Census of Agriculture}}
+\end{column}
+
+\begin{column}{0.42\textwidth}
+\textbf{Two striking trends since (at least) 2002:}
+
+\medskip
+
+\begin{itemize}
+    \item Farms are consolidating: \highlight{$\downarrow$ 40\%}
+
+    \smallskip
+
+    \item Upstream industries employment is growing: \highlight{$\uparrow$ 25\%}
+\end{itemize}
+
+\medskip
+
+{\small\textbf{Upstream industries:} custom services (soil prep, planting, harvesting, post-harvest), farm mgmt., fert and pest manuf., equipment manuf., input wholesalers}
+
+\bigskip
+
+{\small\textit{Work is moving off the farm---\\could this contribute to productivity growth?}}
+\end{column}
+\end{columns}
+
+\note{
+  \begin{itemize}
+    \item Data: Economic Census + Census of Agriculture, 2002--2017
+    \item Upstream NAICS: 115112--115116 (custom farm services), 115210 (farm mgmt), 325320 (fertilizer), 333111 (tractors), 424910 (input wholesalers)
+    \item Vertical disintegration: farms outsourcing to specialists
+    \item Sets up the research question
+  \end{itemize}
+}
+
+\end{frame}
+
+% % SLIDE 2: The Question and Why It Matters
+\begin{frame}{The Question}
+
+\textbf{Research question:}\\[0.3cm]
+\begin{center}
+\large Does the emergence of specialized upstream service industries\\
+contribute to agricultural productivity growth?
+\end{center}
+
+\bigskip
 \bigskip
 
 \textbf{Why this matters:}
 \begin{itemize}
-    \item Agricultural TFP growth is exceptional (1.49\% annually, 1948--2021)
-    \item Typically attributed to R\&D and technology adoption
-    \item Organizational change as a source of productivity growth is understudied
+    \item U.S. agricultural TFP growth is exceptional: \highlight{1.49\% annually} (1948--2021)
+    \item Standard story: R\&D spillovers, technology adoption, input quality
+    \item Missing piece: \redemph{organizational change} as a source of productivity
 \end{itemize}
 
 \bigskip
 
+\textbf{Policy relevance:}
+\begin{itemize}
+    \item Understanding sources of productivity growth informs R\&D priorities
+    \item Implications for rural labor markets and farm structure policy
+\end{itemize}
+
+\note{
+  \begin{itemize}
+    \item Big 5 \#1: What is the question?
+    \item Big 5 \#2: Why is it important?
+    \item Frame as filling a gap in the productivity literature
+    \item Policy hook for applied audience
+  \end{itemize}
+}
+
+\end{frame}
+
+% % SLIDE 3: This Paper - Preview of contribution and findings
+\begin{frame}{This Paper}
+
 \textbf{What we do:}
 \begin{itemize}
-    \item First systematic estimates of services--yield relationship
-    \item Leverage restricted Census Bureau administrative data
-    \item Document heterogeneity by crop type and farm scale
-    \item Examine longitudinal dynamics
+    \item First systematic estimates of relationship between crop services (1151) and yields
+    \item Leverage restricted Census Bureau administrative data (LBD + Census of Ag)
+    \item County-level panel: 2002--2017, four Census waves
 \end{itemize}
+
+\bigskip
+
+\textbf{Preview of findings:}
+\begin{enumerate}
+    \item Upstream service employment \highlight{positively associated with yields}
+    \item Effects are \highlight{heterogeneous}: strongest for corn and soybeans
+    \item Large farms drive the relationship---consistent with disintegration story
+    \item Suggestive evidence of \highlight{causal} relationship using longitudinal variation
+\end{enumerate}
+
+\bigskip
+
+\textbf{Takeaway:} \textit{Organizational restructuring---not just technology---may be an important but overlooked source of agricultural productivity growth.}
+
+\note{
+  \begin{itemize}
+    \item Big 5 \#3: What does existing literature say? (implicitly: not much on org change)
+    \item Big 5 \#4: What is your contribution?
+    \item Big 5 \#5: What is your key takeaway?
+    \item Shapiro: Preview findings early---don't make them wait 45 minutes
+  \end{itemize}
+}
 
 \end{frame}
 
 % --------------------------------------------
 \subsection{Background}
 
-\begin{frame}{Background}
+\begin{frame}{Not a New Question}
+
+\textbf{From the 1974 Census of Agricultural Services:}
+
+\bigskip
+
+\begin{quote}
+\small
+``Until the 1940's, agriculture in America was largely self-reliant in regard to many production and harvesting practices now available from off-farm sources in the form of agricultural services. During the last three decades agricultural services have become an increasingly specialized industry. The technological and scientific changes in American agriculture have been directly related to the development of the agricultural service industry. A census of this industry is essential to provide facts necessary for:
+
+\medskip
+
+A. Broader view of today's farm production.\\
+B. Better understanding and interpretation of long-term agricultural changes and trends.\\
+C. More meaningful analysis of the interrelationships of agriculture and agricultural services.''
+\end{quote}
+
+\vfill
+\hfill{\scriptsize --- U.S. Department of Commerce (1974), via Dunn \& Hueth (2017)}
+
+\note{
+  \begin{itemize}
+    \item Direct quote from 1974 Census---they saw this coming
+    \item Same motivation we have today, 50 years later
+    \item Discontinued due to federal budget pressures in early 1980s
+    \item Census Bureau lacked infrastructure/resources to restart
+  \end{itemize}
+}
+
+\end{frame}
+
+\begin{frame}{Not a New Question (cont.)}
+
+\begin{columns}[c]
+\begin{column}{0.52\textwidth}
 \centering
-\textit{[To be developed]}
+\includegraphics[width=\textwidth]{figures/con_1978-2022.pdf}
+\end{column}
+
+\begin{column}{0.45\textwidth}
+\small
+\textbf{USDA recognized this 50+ years ago:}
+\begin{itemize}
+    \item Census of Ag Services: \highlight{1969, 1974, 1978}
+    \item Discontinued when Census of Ag moved to NASS
+\end{itemize}
+
+\medskip
+
+\textbf{A 45-year data gap:}
+\begin{itemize}
+    \item No systematic tracking of service providers
+    \item Farm expenditure data, but not industry dynamics
+\end{itemize}
+
+\medskip
+
+\textbf{Revived in 2022}
+\begin{itemize}
+    \item This paper: what can we learn from \textit{existing} administrative data?
+\end{itemize}
+\end{column}
+\end{columns}
+
+\note{
+  \begin{itemize}
+    \item Historical context---USDA saw this coming
+    \item Data gap explains why this question hasn't been studied
+    \item Sets up our contribution: use LBD + Census of Ag to fill the gap
+    \item New Census of Ag Services will enable future research
+  \end{itemize}
+}
+
+\end{frame}
+
+
+\begin{frame}{Why Would Disintegration Boost Productivity?}
+
+\textbf{Classic economic logic:}
+\begin{itemize}
+    \item \textbf{Specialization} --- Farms focus on core competencies; specialists develop expertise
+    \item \textbf{Scale economies} --- One custom harvester can serve many farms
+    \item \textbf{Technology adoption} --- Specialists can justify expensive, cutting-edge equipment
+\end{itemize}
+
+\bigskip
+
+\textbf{Additional mechanisms:}
+\begin{itemize}
+    \item \textbf{Risk smoothing} --- Service firms diversify across geography and seasons
+    \item \textbf{Labor market efficiency} --- Skilled operators matched to equipment
+    \item \textbf{Knowledge spillovers} --- Specialists transfer best practices across farms
+\end{itemize}
+
+\bigskip
+
+\textit{If disintegration enables these efficiencies, we should see a positive relationship between upstream service activity and farm productivity.}
+
+\note{
+  \begin{itemize}
+    \item Intuitive appetizer---give them a mental model before regressions
+    \item Smith/Ricardo specialization logic
+    \item Sets up the empirical test
+    \item Counterargument: transaction costs, coordination problems (address in discussion)
+  \end{itemize}
+}
+
 \end{frame}
 
 % --------------------------------------------

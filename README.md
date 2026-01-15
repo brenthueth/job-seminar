@@ -28,6 +28,11 @@ To generate speaker notes PDF, uncomment line 11 in `job_seminar.tex`:
 
 Then recompile. Comment it out again for projection slides.
 
+Put multiple notes on a page
+```bash
+pdfjam --nup 1x3 job_seminar.pdf -o notes.pdf
+```
+
 ## Presentation Structure
 
 1. **Research Overview** (~10 min)

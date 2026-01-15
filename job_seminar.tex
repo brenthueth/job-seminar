@@ -713,7 +713,7 @@ C. More meaningful analysis of the interrelationships of agriculture and agricul
 \subsection{Data and Methodology}
 \label{subsec:data}
 
-\begin{frame}{Data Sources}
+\begin{frame}[label=data_sources]{Data Sources}
 
 \textbf{Farm productivity (Census of Agriculture, 2002--2022):}
 \begin{itemize}
@@ -736,12 +736,106 @@ C. More meaningful analysis of the interrelationships of agriculture and agricul
 
 \textbf{Why LBD?} Public data (QCEW) suppressed for \highlight{75\%} of counties with crop services---yet these counties produce \highlight{half of U.S. crops}
 
+\medskip
+
+\hfill\hyperlink{lbd_data_work}{\beamergotobutton{Building the 1151 Payroll Data}}
+
 \note{
   \begin{itemize}
     \item Census of Ag: public county tables from NASS
     \item LBD: restricted access through FSRDC network
     \item Payroll better than employment (March 12 employment misses seasonality)
     \item Key contribution: overcoming data suppression problem
+    \item Click through to appendix for data construction story
+  \end{itemize}
+}
+
+\end{frame}
+
+\begin{frame}{Agricultural Service Providers: NAICS 1151}
+
+\begin{columns}[T]
+\begin{column}{0.42\textwidth}
+\textbf{NAICS 11511:}\\
+{\small Support Activities for Crop Production}
+
+\smallskip
+
+{\small
+\begin{tabular}{@{}rl@{}}
+115111 & Cotton Ginning \\
+115112 & Soil Prep, Planting \\
+115113 & Crop Harvesting \\
+115114 & Postharvest Activities \\
+115115 & Farm Labor Contractors \\
+115116 & Farm Management \\
+\end{tabular}
+}
+
+\medskip
+
+{\footnotesize\textit{Custom operators, crew leaders, agronomic consultants}}
+
+\medskip
+
+\textbf{Coverage:} \highlight{2,400+ counties} with NAICS 11511 establishments (2017)
+\end{column}
+
+\begin{column}{0.56\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figures/naics_coverage.png}
+
+\smallskip
+{\scriptsize\textcolor{gray}{Counties with NAICS 11511 establishments in QCEW, 2017}}
+\end{column}
+\end{columns}
+
+\note{
+  \begin{itemize}
+    \item Define what we mean by ``crop services''
+    \item NAICS 11511 covers the key custom work categories
+    \item Map shows establishments are geographically widespread
+    \item Orange = has establishments; present nearly everywhere crops are grown
+    \item Sets up the suppression problem---we know they're there, but can't see the data
+  \end{itemize}
+}
+
+\end{frame}
+
+\begin{frame}{Service Providers Follow Cropland}
+
+\begin{center}
+\includegraphics[width=0.95\textwidth]{figures/cropland_providers.png}
+\end{center}
+
+\vspace{-0.75cm}
+
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+\centering
+{\small\textbf{Harvested cropland} (1000s acres)}
+%{\scriptsize Corn Belt, Central Valley, Delta}
+\end{column}
+
+\begin{column}{0.48\textwidth}
+\centering
+{\small\textbf{Ag service providers} (establishment count)}
+
+{\scriptsize Gray = suppressed or zero}
+\end{column}
+\end{columns}
+
+\bigskip
+
+\textbf{Pattern:} More cropland $\rightarrow$ more service providers. \textit{But is there a \highlight{causal} productivity effect?}
+
+\note{
+  \begin{itemize}
+    \item Visual evidence of geographic correlation
+    \item Left map: harvested cropland from Census of Ag
+    \item Right map: service provider counts from QCEW
+    \item Strong overlap motivates the research question
+    \item But correlation doesn't establish causation
   \end{itemize}
 }
 
@@ -1547,6 +1641,49 @@ Richard A. Dunn (Sandhill Consulting)
     \item Shows marginal effects at different levels of average farm size
     \item Positive relationship: counties with larger farms benefit more from services
     \item Supports disintegration story: large farms are the ones outsourcing
+  \end{itemize}
+}
+
+\end{frame}
+
+% Building the 1151 Payroll Data
+\begin{frame}[label=lbd_data_work]{Building the NAICS 1151 Payroll Data}
+
+\hfill \hyperlink{data_sources}{\fcolorbox{darkblue}{white}{\textcolor{darkblue}{\footnotesize $\triangleleft$ Back to Data}}}
+
+\medskip
+
+\textbf{The problem:} This sector \highlight{falls between the cracks} in a decentralized federal statistical system---not quite farm, not quite non-farm.
+
+\medskip
+
+\textbf{A research-driven data improvement story:}
+\begin{itemize}
+    \item \textbf{Discovery:} Found systematic errors in NAICS 1151 industry coding
+    \item \textbf{Documentation:} Dunn \& Hueth (2017); Babkin et al. (2022)
+    \item \textbf{Impact:} Our corrections incorporated into Census Bureau's LBD rebuild
+    \item \textbf{Result:} Improved data now available to all FSRDC researchers
+\end{itemize}
+
+\medskip
+
+\textbf{Why this matters:}
+\begin{itemize}
+    \item FSRDC access enables discovery \textit{and} correction of data issues
+    \item Rich administrative data relevant to agriculture and rural economies
+    \item Researcher engagement improves data quality for everyone
+\end{itemize}
+
+\bigskip
+
+\textit{Not for the faint of heart---but nothing worth doing is easy!}
+
+\note{
+  \begin{itemize}
+    \item Key example of FSRDC research benefits
+    \item Found coding errors, documented them, Census fixed them
+    \item Our corrections now in production LBD
+    \item Lots of ag-relevant data in FSRDCs beyond what we use here
   \end{itemize}
 }
 
